@@ -1,0 +1,32 @@
+# Distributed Web Infrastructure
+
+## Diagram
+https://drive.google.com/file/d/1w6cc8fzr1HfT6SEhRW5OCJwSGq-mLm0W/view?usp=drivesdk
+
+## Components & Purpose
+
+- **Server 1 & Server 2**
+  - Host the web server (Nginx), application server, and application files.
+  - Provide redundancy and share traffic.
+
+- **Load Balancer (HAProxy)**
+  - Distributes incoming requests across servers.
+  - Uses **Round Robin** algorithm: sends each request to the next server in order.
+  - **Active–Active** setup: both servers process requests.
+
+- **Primary–Replica Database (MySQL)**
+  - Primary handles all writes and updates.
+  - Replica handles reads and can take over if Primary fails.
+
+## Issues
+
+1. **Single Point of Failure**
+   - Load balancer failure brings down the site.
+
+2. **Security**
+   - No firewall, no HTTPS encryption.
+
+3. **No Monitoring**
+   - No alerts for downtime or performance degradation.
+
+---

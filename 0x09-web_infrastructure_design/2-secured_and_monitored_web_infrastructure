@@ -1,0 +1,48 @@
+# Secured and Monitored Web Infrastructure
+
+## Diagram
+https://drive.google.com/file/d/1auOGWytmI0yU9nk3MYpG6YD5jGwY0STn/view?usp=drivesdk
+
+## Components & Purpose
+
+- **Firewalls (3)**
+  1. Between the Internet and Load Balancer.
+  2. Between Load Balancer and Web/App servers.
+  3. Between Web/App servers and Database.
+
+- **SSL Certificate**
+  - Enables HTTPS for secure, encrypted communication.
+  - Protects against eavesdropping and MITM attacks.
+
+- **Monitoring Clients (3)**
+  - Installed on Load Balancer, Web/App server, and Database.
+  - Collect logs and metrics for performance and security monitoring.
+
+## Why HTTPS?
+- Encrypts data in transit.
+- Prevents interception of sensitive information.
+
+## Why Monitoring?
+- Detects failures early.
+- Tracks performance metrics (CPU, Memory, QPS).
+- Sends alerts for anomalies.
+
+## How Monitoring Works
+- Agents collect metrics/logs locally.
+- Data sent to central monitoring platform (Sumo Logic, Datadog, Prometheus, etc.).
+
+## Monitoring QPS
+- Configure agent to parse Nginx/HAProxy logs.
+- Track HTTP request rates and set alert thresholds.
+
+## Issues in This Setup
+1. **SSL Termination at Load Balancer**
+   - Traffic from Load Balancer to backend is unencrypted.
+
+2. **Single Write-Capable MySQL Server**
+   - Primary DB failure blocks writes.
+
+3. **Identical Servers (DB + App + Web)**
+   - Breach or overload on one can affect all.
+
+---

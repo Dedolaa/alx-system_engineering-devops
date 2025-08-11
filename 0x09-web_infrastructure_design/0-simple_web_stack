@@ -1,0 +1,46 @@
+# Simple Web Stack
+
+## Infrastructure Diagram
+
+https://drive.google.com/file/d/1DXDnq3a1E48AqRv8ZBdcqEaqp4L4A7Kr/view?usp=drivesdk
+
+
+## Components
+
+1. **Server**
+   - A physical or virtual machine with IP `8.8.8.8` hosting all components.
+
+2. **Domain Name**
+   - `foobar.com` maps to `8.8.8.8`.
+   - `www` is an **A record** pointing to the server IP.
+
+3. **Web Server (Nginx)**
+   - Handles HTTP requests.
+   - Serves static content.
+   - Forwards dynamic requests to the application server.
+
+4. **Application Server**
+   - Runs the backend application logic (e.g., PHP-FPM, Gunicorn).
+   - Connects to the database to fetch/store data.
+
+5. **Application Files**
+   - Website code base (HTML, CSS, JS, backend scripts).
+
+6. **Database (MySQL)**
+   - Stores structured application data.
+
+7. **Communication**
+   - Server and user communicate via HTTP/HTTPS over TCP/IP.
+
+## Issues with This Infrastructure
+
+1. **Single Point of Failure (SPOF)**
+   - One server crash takes the whole site down.
+
+2. **Downtime During Maintenance**
+   - Restarting or updating the server interrupts service.
+
+3. **No Scalability**
+   - Cannot handle heavy traffic or sudden spikes.
+
+---
