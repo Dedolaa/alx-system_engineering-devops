@@ -1,0 +1,51 @@
+# Scale Up - Advanced Web Infrastructure
+
+## Diagram
+
+https://drive.google.com/file/d/1M4VX8xgkjr2CpwDs0EK2GwU0MoqCnzO5/view?usp=sharing
+
+
+## Objective
+Enhance availability, scalability, and performance by splitting major components into dedicated servers and clustering load balancers.
+
+## Components
+
+- **2 Load Balancers (HAProxy)**
+  - Cluster setup for high availability.
+  - Removes single point of failure from previous designs.
+
+- **Dedicated Web Servers (Nginx)**
+  - Serve static content and forward dynamic requests to application servers.
+
+- **Dedicated Application Servers**
+  - Run backend logic and handle dynamic content processing.
+
+- **Primary–Replica Database (MySQL)**
+  - Primary handles writes.
+  - Replica handles reads and acts as failover.
+
+## Application Server vs Web Server
+
+- **Web Server**
+  - Handles HTTP requests, serves static files.
+  - Acts as a reverse proxy for dynamic content.
+
+- **Application Server**
+  - Executes backend code, processes dynamic content.
+  - Communicates with the database and returns processed output to the web server.
+
+## Why These Additions?
+
+1. **Load Balancer Cluster**
+   - Ensures uptime even if one load balancer fails.
+
+2. **Component Separation**
+   - Better performance by isolating workloads.
+   - Easier scaling — you can scale web, app, and database tiers independently.
+
+## Benefits
+- Higher availability.
+- Improved performance and fault tolerance.
+- Easier scaling and maintenance.
+
+---
